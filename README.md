@@ -5,6 +5,8 @@
 - [How to install](#how-to-install)
 - [How to use](#how-to-use)
 - [Parameters](#parameters)
+- [Return Values](#return-values)
+- [Our Usage](#our-usage)
 - [Feedback](#feedback)
 
 ==========
@@ -90,6 +92,44 @@ The attribute processor function expects at least 2 parameters, however 4 are av
         {mode: 'fade'}  // Set your own default arguments to merge into
     );
 ```
+
+##Return Values##
+
+Sometimes you may need to use the response of a function you are calling in your scripts, and fortunately you can do that using this attribute processor.
+
+```js
+  var sliders = $.processAttrFunction( 'bxSlider', 'slider', 'mode' );
+```
+
+The sliders variable will then contain an array of all your processed functions (sliders in thi case), each object then containing 3 children to help you in terms of debugging and handling response data:
+
+```js
+    sliders.response // This contains the response given by the function (bxSlider in this case)
+    sliders.el      // The element for which this object relates
+    sliders.args    // The arguments supplied to the function, great for debugging
+```
+
+##Our Usage##
+
+We use this internally now and have done successfully with all jquery plugins we have thrown into it, for example:
+
+```js
+    // Attribute function links
+	var elements = {};
+	elements.fitnav			= $('[data-fitnav]').processAttrFunction( 'fitNav', 'fitnav', 'mode' );
+	elements.parallax		= $('[data-parallax]').processAttrFunction( 'parallax', 'parallax' );
+	elements.accordion		= $('[data-accordion]').processAttrFunction( 'accordion', 'accordion', false, {heightStyle: 'content'} );
+	elements.fancybox		= $('[data-fancybox]').processAttrFunction( 'fancybox', 'fancybox', 'type', {padding: 0} );
+	elements.map			= $('[data-map]').processAttrFunction( 'simpleMap', 'map', 'address' );
+	elements.matchHeight	= $('[data-match-height]').processAttrFunction( 'matchHeight', 'match-height', false );
+	elements.fullHeight		= $('[data-full-height]').processAttrFunction( 'fullHeight', 'full-height', 'ratio' );
+	elements.bgGrab			= $('[data-bg-grab]').processAttrFunction( 'bgGrab', 'bg-grab', 'selector' );
+	elements.slider			= $('[data-slider]').processAttrFunction( 'betterBxSlider', 'slider', 'mode' );
+	elements.flickity		= $('[data-flickity]').processAttrFunction( 'flickity', 'flickity', 'wrapAround', {wrapAround: true, cellAlign: 'left'} );
+```
+**__ Please note: we have a wrapper function for bxSlider and maps to extend their default functionality, for example the slider only gets initialised when there is more than one slide. __**
+
+This then means we have an `elements` variable containing everything that has been processed, making debugging a breeze.
 
 ##Feedback##
 
