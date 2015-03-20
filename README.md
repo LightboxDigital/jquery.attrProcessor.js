@@ -4,8 +4,7 @@
 - [Description](#description)
 - [How to install](#how-to-install)
 - [How to use](#how-to-use)
-- [Arguments](#arguments)
-- [To do list](#to-do-list)
+- [Parameters](#parameters)
 - [Feedback](#feedback)
 
 ==========
