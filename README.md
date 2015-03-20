@@ -26,7 +26,7 @@ Be sure to include jQuery first!
 
 Once you have included jQuery and jquery.attrProcessor.js, you can initialise the processor by doing the following:
 
-* This example uses the popular bxSlider
+**__This example uses the popular bxSlider__**
 
 ```js
   $.processAttrFunction( 'bxSlider', 'slider', 'mode' );
